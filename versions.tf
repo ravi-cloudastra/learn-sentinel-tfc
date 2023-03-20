@@ -19,5 +19,21 @@ terraform {
       name = "sentinel-example"
     }
   }
+  
+  backend "s3" {
+    bucket = "tfcloudlogs"
+    region = "us-east-1"
+    key    = "terraform.tfstate"
+#     access_key = "your-access-key"
+#     secret_key = "your-secret-key"
+  }
+
+  log {
+    type = "s3"
+    config = {
+      bucket = "tfcloudlogs"
+      region = "us-east-1"
+    }
+  }
 
 }
